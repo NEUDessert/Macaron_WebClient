@@ -34,13 +34,13 @@ angular.
                             log.solved = true;
                         }
                     });
-            }
+            };
             self.ignore = function(log) {
                 $http({
                     method: 'POST',
                     url: '',
                     data: {alertId: log.alertId, method: 2}
                 })
-            }
+            };
         }
 });
