@@ -20,20 +20,27 @@ angular.
                     ignored: true
                 }
             ];
-            // $http.get('url').then(function(response) {
-            //     self.logs = response.data;
-            // });
-            // self.solve = function(log) {
-            //     $http({
-            //         method: 'POST',
-            //         url: '',
-            //         data: '{alertId: ' + log.alertId + '}'
-            //     })
-            //         .success(function(data) {
-            //             if(data.error == '0') {
-            //                 log.solved = true;
-            //             }
-            //         });
-            // }
+            $http.get('url').then(function(response) {
+                self.logs = response.data;
+            });
+            self.solve = function(log) {
+                $http({
+                    method: 'POST',
+                    url: '',
+                    data: {alertId: log.alertId, method: 1}
+                })
+                    .success(function(data) {
+                        if(data.error == '0') {
+                            log.solved = true;
+                        }
+                    });
+            }
+            self.ignore = function(log) {
+                $http({
+                    method: 'POST',
+                    url: '',
+                    data: {alertId: log.alertId, method: 2}
+                })
+            }
         }
 });
