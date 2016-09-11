@@ -11,10 +11,29 @@ angular.module('Macaron_WebClient').
             when('/status', {template: '<status></status>'}).
             when('/list', {template: '<list></list>'}).
             when('/logs', {template: '<logs></logs>'}).
+            when('/live', {template: '<live></live>'}).
             otherwise('/basic-info');
     }
 ])
+    .controller('loginCheckController', function loginCheckController($http, $scope, $location) {
+        $scope.username = 'Guest';
+        $http({
+            method: 'POST',
+            url: 'http://219.216.65.185:8082/user/getUsername.do',
+            withCredentials: true
+        })
+            .success(function(data) {
+                if(data.error == '0') {
+                    console.log('username: ' + data.username);
+                    $scope.username = data.username;
+                } else {
+                    console.log(data);
+                    window.location.href = 'login.html';
+                }
+            });
+    })
     .controller('navController', function navController($scope, $location) {
+
         $scope.navItems = [
             {
                 name: 'basic-info',
@@ -43,7 +62,15 @@ angular.module('Macaron_WebClient').
                 href: '#!/logs',
                 location: '/logs',
                 icon: 'uk-icon-tasks uk-icon-justify'
-            }
+            },
+            {
+                name: 'live',
+                title: '实时监控',
+                href: '#!/live',
+                location: '/live',
+                icon: 'uk-icon-video-camera uk-icon-justify'
+            },
+
         ];
         $scope.selectedItem = "basic-info";
         $scope.navClick = function (itemName) {

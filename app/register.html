@@ -6,48 +6,77 @@
     <title>Dessert · 注册</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-    <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="bower_components/uikit/css/uikit.gradient.min.css">
     <link rel="stylesheet" href="assets/css/register.css">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="app.config.js"></script>
     <script src="components/version/version.js"></script>
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>
     <script src="bower_components/uikit/js/uikit.min.js"></script>
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script>
+        angular.module('registerPage', [])
+                .controller('registerController', function registerController($scope, $http, $location) {
+                    $scope.userInfo = {
+                        username: '',
+                        password: '',
+                        email: '',
+                        phone: ''
+                    };
+                    $scope.passcheck = '';
+                    $scope.register = function(userInfo) {
+                        $scope.userInfo = userInfo;
+                        $http({
+                            method: 'POST',
+                            url: 'http://219.216.65.185:8082/user/register.do',
+                            data: $.param($scope.userInfo),
+                            withCredentials: true,
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        })
+                                .success(function(data) {
+                                    console.log(data);
+                                    if(data.error != '0') {
+                                        alert("注册失败");
+                                    } else {
+                                        window.location.href = 'index.html'
+                                    }
+                                });
+                    }
+                });
+    </script>
 </head>
-<body class="uk-height-1-1">
+<body class="uk-height-1-1" ng-app="registerPage">
 <div class="uk-text-left">
     <div class="uk-align-center uk-margin-top" style="width: 600px;">
-        <form action="" ng-app class="uk-panel uk-panel-box uk-form" name="registerForm">
+        <form ng-controller="registerController" ng-submit="register(userInfo)" class="uk-panel uk-panel-box uk-form" name="registerForm">
             <div class="uk-form-row uk-text-center">
                 <img src="assets/img/logo.png" width="150" height="150">
             </div>
             <div class="uk-form-row">
-                <span class="uk-width-1-6 uk-display-inline-block">用户名</span><input type="text" name="username" ng-model = "username" class="uk-width-4-6" required><span class="uk-width-1-6 uk-display-inline-block"></span>
+                <span class="uk-width-1-6 uk-display-inline-block">用户名</span><input type="text" name="username" ng-model = "userInfo.username" class="uk-width-4-6" required><span class="uk-width-1-6 uk-display-inline-block"></span>
             </div>
             <div class="uk-form-row">
-                <span class="uk-width-1-6 uk-display-inline-block">密码</span><input type="password" name="password" ng-model="password" class="uk-width-4-6" required><span class="uk-width-1-6 uk-display-inline-block"></span>
+                <span class="uk-width-1-6 uk-display-inline-block">密码</span><input type="password" name="password" ng-model="userInfo.password" class="uk-width-4-6" required><span class="uk-width-1-6 uk-display-inline-block"></span>
             </div>
             <div class="uk-form-row">
-                <span class="uk-width-1-6 uk-display-inline-block">确认密码</span><input type="password" name="passcheck" ng-model="passcheck" class="uk-width-4-6  {{password != passcheck?'uk-form-danger':''}}" required><span class="uk-width-1-6 uk-display-inline-block"></span>
+                <span class="uk-width-1-6 uk-display-inline-block">确认密码</span><input type="password" name="passcheck" ng-model="passcheck" class="uk-width-4-6  {{userInfo.password != passcheck?'uk-form-danger':''}}" required><span class="uk-width-1-6 uk-display-inline-block"></span>
             </div>
             <div class="uk-form-row">
-                <span class="uk-width-1-6 uk-display-inline-block">电子邮箱</span><input type="email" name="email" ng-model="email" class="uk-width-4-6 {{registerForm.email.$error.email?'uk-form-danger':''}}" required><span class="uk-width-1-6 uk-display-inline-block"></span>
+                <span class="uk-width-1-6 uk-display-inline-block">电子邮箱</span><input type="email" name="email" ng-model="userInfo.email" class="uk-width-4-6 {{registerForm.email.$error.email?'uk-form-danger':''}}" required><span class="uk-width-1-6 uk-display-inline-block"></span>
             </div>
             <div class="uk-form-row">
-                <span class="uk-width-1-6 uk-display-inline-block">手机号</span><input type="text" name="phone" ng-model="phone" class="uk-width-4-6" required><span class="uk-width-1-6 uk-display-inline-block"></span>
+                <span class="uk-width-1-6 uk-display-inline-block">手机号</span><input type="text" name="phone" ng-model="userInfo.phone" class="uk-width-4-6" required><span class="uk-width-1-6 uk-display-inline-block"></span>
             </div>
             <div class="uk-form-row">
-                <label class="uk-width-1-1 uk-display-inline-block uk-text-center"><input type="checkbox" required> 我已阅读<a class="uk-link uk-link-muted">用户须知</a>,并同意相关条款。{{passcheck}}</label>
+                <label class="uk-width-1-1 uk-display-inline-block uk-text-center"><input type="checkbox" required> 我已阅读<a class="uk-link uk-link-muted">用户须知</a>,并同意相关条款。</label>
             </div>
             <div class="uk-form-row uk-text-center">
-                <a href="#" class="uk-width-1-4 uk-button uk-button-primary uk-button-large uk-margin-right">注册</a><a href="#" class="uk-width-1-4 uk-button uk-button-danger uk-button-large">重置</a>
+                <button class="uk-width-1-4 uk-button uk-button-primary uk-button-large uk-margin-right" type="submit" ng-disabled="!registerForm.$valid">注册</button><button class="uk-width-1-4 uk-button uk-button-danger uk-button-large">重置</button>
             </div>
         </form>
     </div>

@@ -3,6 +3,7 @@
         <table class="uk-table uk-table-hover uk-table-striped uk-table-middle">
             <thead>
             <tr>
+                <th>日志编号</th>
                 <th>时间</th>
                 <th>设备名称</th>
                 <th>位置</th>
@@ -11,19 +12,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>2016-06-01 12:05</td>
-                <td>test_1</td>
-                <td>B623</td>
-                <td>燃气数据异常</td>
-                <td><a href="#" class="uk-button uk-button-small uk-button-primary">查看详情</a> <button class="uk-button uk-button-small uk-button-success" type="button">处理</button></td>
-            </tr>
-            <tr>
-                <td>2016-06-01 12:01</td>
-                <td>test_2</td>
-                <td>B658</td>
-                <td>烟雾数据异常</td>
-                <td><a href="#" class="uk-button uk-button-small uk-button-primary">查看详情</a> <button class="uk-button uk-button-small uk-button-success" type="button" disabled>已处理</button></td>
+            <tr ng-repeat="log in $ctrl.logs">
+                <td>{{log.alertId}}</td>
+                <td>{{log.occurTime}}</td>
+                <td>{{log.deviceName}}</td>
+                <td>{{log.deviceLocate}}</td>
+                <td>{{log.message}}</td>
+                <td><a class="uk-button uk-button-small uk-button-success" ng-disabled="log.solved" ng-click="$ctrl.solve(log)">{{log.solved?'已处理':'处理'}}</a> <button class="uk-button uk-button-small uk-button-primary" type="button"  ng-disabled="log.ignored" ng-click="$ctrl.ignore(log)">{{log.ignored?'已忽略':'忽略'}}</button></td>
             </tr>
             </tbody>
         </table>

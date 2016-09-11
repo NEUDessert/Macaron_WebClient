@@ -1,13 +1,28 @@
 /**
  * Created by Lawrence on 16/9/10.
  */
-'use strict'
+'use strict';
 
 angular.
     module('list').
     component('list', {
         templateUrl: 'list/list.template.html',
-        controller: function basicInfoController() {
-
+        controller: function listController($http) {
+            var self = this;
+            self.devices = [
+                {
+                    deviceName: 'Test1',
+                    registerTime: '2016.1.1',
+                    deviceLocate: 'B623'
+                }
+            ];
+            // $http({
+            //     method: 'POST',
+            //     url: ''
+            // }).success(function(data) {
+            //     if(data) {
+            //         self.devices = data;
+            //     }
+            // });
         }
 });

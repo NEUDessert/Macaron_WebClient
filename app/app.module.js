@@ -8,5 +8,6 @@ angular.module('Macaron_WebClient', [
     'basicInfo',
     'status',
     'list',
-    'logs'
+    'logs',
+    'live'
 ]);
