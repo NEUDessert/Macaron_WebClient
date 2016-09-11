@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>log</title>
+    <link rel="stylesheet" href="css/uikit.gradient.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/uikit.min.js"></script>
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js"></script>-->
+</head>
+<body>
+<div class="uk-container uk-container-center">
+    <div class="uk-grid uk-grid-small" data-uk-grid-match>
+        <table class="uk-table uk-table-hover uk-table-striped uk-table-middle">
+            <thead>
+            <tr>
+                <th>时间</th>
+                <th>设备名称</th>
+                <th>位置</th>
+                <th>信息</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>2016-06-01 12:05</td>
+                <td>test_1</td>
+                <td>B623</td>
+                <td>燃气数据异常</td>
+                <td><a href="#" class="uk-button uk-button-small uk-button-primary">查看详情</a> <button class="uk-button uk-button-small uk-button-success" type="button">处理</button></td>
+            </tr>
+            <tr>
+                <td>2016-06-01 12:01</td>
+                <td>test_2</td>
+                <td>B658</td>
+                <td>烟雾数据异常</td>
+                <td><a href="#" class="uk-button uk-button-small uk-button-primary">查看详情</a> <button class="uk-button uk-button-small uk-button-success" type="button" disabled>已处理</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

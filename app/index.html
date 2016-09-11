@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Macaron_WebClient" class="uk-height-1-1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Macaron · 控制面板</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="bower_components/uikit/css/uikit.gradient.min.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body class="uk-height-1-1">
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="app.module.js"></script>
+<script src="app.config.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
+<script src="bower_components/uikit/js/uikit.min.js"></script>
+<script src="basic-info/basic-info.module.js"></script>
+<script src="basic-info/basic-info.component.js"></script>
+<script src="status/status.module.js"></script>
+<script src="status/status.component.js"></script>
+<script src="list/list.module.js"></script>
+<script src="list/list.component.js"></script>
+<script src="logs/logs.module.js"></script>
+<script src="logs/logs.component.js"></script>
+<script src="../node_modules/angular-chart.js/node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="../node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+
+<nav class="uk-navbar uk-navbar-attached">
+    <a href="#" class="uk-navbar-brand"><img src="assets/img/dessert.png" height="25" width="110" /></a>
+    <ul class="uk-navbar-nav">
+    </ul>
+    <div class="uk-navbar-flip">
+        <ul class="uk-navbar-nav">
+            <li data-uk-dropdown="{mode:'click'}">
+                <a href="#"><i class="uk-icon-user"></i> Lawrence</a>
+                <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-small">
+                    <ul class="uk-nav uk-nav-navbar">
+                        <li><a href=""><i class="uk-icon-users uk-icon-justify" style="margin-right: 5px;"></i> 个人信息</a></li>
+                        <li><a href=""><i class="uk-icon-sign-out uk-icon-justify" style="margin-right: 5px;"></i> 退出登录</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="uk-grid uk-height-1-1">
+    <div class="uk-width-1-5 uk-height-1-1">
+        <div class="uk-panel uk-panel-box uk-height-1-1">
+            <h3 class="uk-panel-title"><i class="uk-icon-home uk-icon-justify"></i> Macaron</h3>
+            <ul ng-controller="navController" class="uk-nav uk-nav-side">
+                <li ng-repeat="navItem in navItems" ng-class="{'uk-active':selectedItem == navItem.name}">
+                    <a href="{{navItem.href}}" ng-click="navClick(navItem.name)"><i ng-class="navItem.icon" style="margin-right: 10px;"></i> {{navItem.title}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="uk-width-4-5" style="padding-bottom: 10px;" ng-view></div>
+</div>
+</body>
+</html>
