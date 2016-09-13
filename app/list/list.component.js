@@ -10,19 +10,20 @@ angular.
         controller: function listController($http) {
             var self = this;
             self.devices = [
-                {
-                    deviceName: 'Test1',
-                    registerTime: '2016.1.1',
-                    deviceLocate: 'B623'
-                }
+                // {
+                //     deviceName: 'Test1',
+                //     registerTime: '2016.1.1',
+                //     deviceLocate: 'B623'
+                // }
             ];
-            // $http({
-            //     method: 'POST',
-            //     url: ''
-            // }).success(function(data) {
-            //     if(data) {
-            //         self.devices = data;
-            //     }
-            // });
+            $http({
+                method: 'POST',
+                url: 'http://219.216.65.185:8082/user/getDevices.do',
+                withCredentials: true
+            }).success(function(data) {
+                if(data) {
+                    self.devices = data;
+                }
+            });
         }
 });

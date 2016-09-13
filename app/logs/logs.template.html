@@ -18,7 +18,7 @@
                 <td>{{log.deviceName}}</td>
                 <td>{{log.deviceLocate}}</td>
                 <td>{{log.message}}</td>
-                <td><a class="uk-button uk-button-small uk-button-success" ng-disabled="log.solved" ng-click="$ctrl.solve(log)">{{log.solved?'已处理':'处理'}}</a> <button class="uk-button uk-button-small uk-button-primary" type="button"  ng-disabled="log.ignored" ng-click="$ctrl.ignore(log)">{{log.ignored?'已忽略':'忽略'}}</button></td>
+                <td><button class="uk-button uk-button-small uk-button-success" ng-disabled="log.isChecked != '0'" ng-click="$ctrl.solve(log)">{{log.isChecked == '1'?'已处理':'处理'}}</button> <button class="uk-button uk-button-small uk-button-primary" type="button"  ng-disabled="log.isChecked != '0'" ng-click="$ctrl.ignore(log)">{{log.isChecked == '2'?'已忽略':'忽略'}}</button></td>
             </tr>
             </tbody>
         </table>

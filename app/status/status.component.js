@@ -23,7 +23,7 @@ angular.
                 withCredentials: true
             })
                 .success(function(data) {
-                    // console.log(data);
+                    console.log(data);
                    if(data) {
                        self.statusList = data;
                        self.selected = self.statusList[0];

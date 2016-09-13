@@ -10,37 +10,55 @@ angular.
         controller: function logsController($http) {
             var self = this;
             self.logs = [
-                {
-                    alertId: '1',
-                    occurTime: '2016-01-01 12:01',
-                    deviceName: 'Test1',
-                    deviceLocate: 'B623',
-                    message: '燃气数据异常',
-                    solved: false,
-                    ignored: true
-                }
+                // {
+                //     alertId: '1',
+                //     occurTime: '2016-01-01 12:01',
+                //     deviceName: 'Test1',
+                //     deviceLocate: 'B623',
+                //     message: '燃气数据异常',
+                //     isChecked: '1'
+                // },
+                // {
+                //     alertId: '2',
+                //     occurTime: '2016-01-01 12:01',
+                //     deviceName: 'Test1',
+                //     deviceLocate: 'B623',
+                //     message: '燃气数据异常',
+                //     isChecked: '2'
+                // }
             ];
-            $http.get('url').then(function(response) {
-                self.logs = response.data;
+            $http({
+                method: 'POST',
+                url: 'http://219.216.65.185:8082/user/getLogs.do',
+                withCredentials: true
+            }).then(function(response) {
+                if(response.data) {
+                    self.logs = response.data;
+                }
             });
             self.solve = function(log) {
                 $http({
-                    method: 'POST',
-                    url: '',
-                    data: {alertId: log.alertId, method: 1}
+                    method: 'GET',
+                    url: 'http://219.216.65.185:8082/user/logOperation.do?alertId=' + log.alertId + '&method=' + '1',
+                    withCredentials: true
                 })
                     .success(function(data) {
                         if(data.error == '0') {
-                            log.solved = true;
+                            log.isChecked = '1';
                         }
                     });
             };
             self.ignore = function(log) {
                 $http({
-                    method: 'POST',
-                    url: '',
-                    data: {alertId: log.alertId, method: 2}
+                    method: 'GET',
+                    url: 'http://219.216.65.185:8082/user/logOperation.do?alertId=' + log.alertId + '&method=' + '2',
+                    withCredentials: true
                 })
+                    .success(function(data) {
+                       if(data.error == '0') {
+                           log.isChecked = '2';
+                       }
+                    });
             };
         }
 });
