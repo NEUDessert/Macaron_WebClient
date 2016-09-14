@@ -10,16 +10,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Test1</td>
-                <td>2016-06-01 12:01</td>
-                <td>B623</td>
-                <td><button class="uk-button uk-button-small uk-button-danger" type="button">注销</button></td>
-            </tr>
-            <tr>
-                <td>Test2</td>
-                <td>2016-06-01 12:01</td>
-                <td>B658</td>
+            <tr ng-repeat="device in $ctrl.devices">
+                <td>{{device.deviceName}}</td>
+                <td>{{device.registerTime}}</td>
+                <td>{{device.deviceLocate}}</td>
                 <td><button class="uk-button uk-button-small uk-button-danger" type="button">注销</button></td>
             </tr>
             </tbody>

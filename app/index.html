@@ -6,6 +6,7 @@
     <title>Macaron · 控制面板</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="bower_components/uikit/css/uikit.gradient.min.css">
@@ -29,21 +30,23 @@
 <script src="list/list.component.js"></script>
 <script src="logs/logs.module.js"></script>
 <script src="logs/logs.component.js"></script>
+<script src="live/live.module.js"></script>
+<script src="live/live.component.js"></script>
 <script src="../node_modules/angular-chart.js/node_modules/chart.js/dist/Chart.min.js"></script>
 <script src="../node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
 
 <nav class="uk-navbar uk-navbar-attached">
-    <a href="#" class="uk-navbar-brand"><img src="assets/img/dessert.png" height="25" width="110" /></a>
+    <a class="uk-navbar-brand"><img src="assets/img/dessert.png" height="25" width="110" /></a>
     <ul class="uk-navbar-nav">
     </ul>
-    <div class="uk-navbar-flip">
+    <div class="uk-navbar-flip" ng-controller="loginCheckController">
         <ul class="uk-navbar-nav">
             <li data-uk-dropdown="{mode:'click'}">
-                <a href="#"><i class="uk-icon-user"></i> Lawrence</a>
+                <a href="#"><i class="uk-icon-user"></i> {{username}}</a>
                 <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-small">
                     <ul class="uk-nav uk-nav-navbar">
-                        <li><a href=""><i class="uk-icon-users uk-icon-justify" style="margin-right: 5px;"></i> 个人信息</a></li>
-                        <li><a href=""><i class="uk-icon-sign-out uk-icon-justify" style="margin-right: 5px;"></i> 退出登录</a></li>
+                        <!--<li><a href=""><i class="uk-icon-users uk-icon-justify" style="margin-right: 5px;"></i> 个人信息</a></li>-->
+                        <li><a href="login.html"><i class="uk-icon-sign-out uk-icon-justify" style="margin-right: 5px;"></i> 退出登录</a></li>
                     </ul>
                 </div>
             </li>
