@@ -17,7 +17,7 @@ angular.
         };
         $http({
             method: 'POST',
-            url: 'http://219.216.65.185:8082/user/getBasicInfo.do',
+            url: 'http://192.168.50.197:8082/user/getBasicInfo.do',
             withCredentials: true
         })
             .success(function (data) {

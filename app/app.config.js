@@ -19,7 +19,7 @@ angular.module('Macaron_WebClient').
         $scope.username = 'Guest';
         $http({
             method: 'POST',
-            url: 'http://219.216.65.185:8082/user/getUsername.do',
+            url: 'http://192.168.50.197:8082/user/getUsername.do',
             withCredentials: true
         })
             .success(function(data) {
