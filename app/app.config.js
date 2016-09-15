@@ -18,8 +18,8 @@ angular.module('Macaron_WebClient').
     .controller('loginCheckController', function loginCheckController($http, $scope, $location) {
         $scope.username = 'Guest';
         $http({
-            method: 'POST',
-            url: 'http://192.168.50.197:8082/user/getUsername.do',
+            method: 'GET',
+            url: 'http://219.216.65.185:8082/user/getUsername.do',
             withCredentials: true
         })
             .success(function(data) {

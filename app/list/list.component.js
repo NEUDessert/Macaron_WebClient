@@ -10,18 +10,18 @@ angular.
         controller: function listController($http) {
             var self = this;
             self.devices = [
-                // {
-                //     deviceName: 'Test1',
-                //     registerTime: '2016.1.1',
-                //     deviceLocate: 'B623'
-                // }
+                {
+                    deviceName: '[无设备]',
+                    registerTime: '[无设备]',
+                    deviceLocate: '[无设备]'
+                }
             ];
             $http({
                 method: 'POST',
-                url: 'http://192.168.50.197:8082/user/getDevices.do',
+                url: 'http://219.216.65.185:8082/user/getDevices.do',
                 withCredentials: true
             }).success(function(data) {
-                if(data) {
+                if(data.error != '1') {
                     self.devices = data;
                 }
             });

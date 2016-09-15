@@ -11,11 +11,7 @@ component('live', {
         var self = this;
         self.deviceList = [
             {
-                deviceName: 'Test1',
-                videoUrl: 'assets/movie.ogg'
-            },
-            {
-                deviceName: 'Test2',
+                deviceName: 'Room_1',
                 videoUrl: 'assets/movie.ogg'
             }
         ];

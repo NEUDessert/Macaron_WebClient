@@ -10,36 +10,28 @@ angular.
         controller: function logsController($http) {
             var self = this;
             self.logs = [
-                // {
-                //     alertId: '1',
-                //     occurTime: '2016-01-01 12:01',
-                //     deviceName: 'Test1',
-                //     deviceLocate: 'B623',
-                //     message: '燃气数据异常',
-                //     isChecked: '1'
-                // },
-                // {
-                //     alertId: '2',
-                //     occurTime: '2016-01-01 12:01',
-                //     deviceName: 'Test1',
-                //     deviceLocate: 'B623',
-                //     message: '燃气数据异常',
-                //     isChecked: '2'
-                // }
+                {
+                    alertId: '0',
+                    occurTime: '[无数据]',
+                    deviceName: '[无数据]',
+                    deviceLocate: '[无数据]',
+                    message: '[无数据]',
+                    isChecked: '-1'
+                }
             ];
             $http({
                 method: 'POST',
-                url: 'http://192.168.50.197:8082/user/getLogs.do',
+                url: 'http://219.216.65.185:8082/user/getLogs.do',
                 withCredentials: true
             }).then(function(response) {
-                if(response.data) {
+                if(response.data.error != '1') {
                     self.logs = response.data;
                 }
             });
             self.solve = function(log) {
                 $http({
                     method: 'GET',
-                    url: 'http://192.168.50.197:8082/user/logOperation.do?alertId=' + log.alertId + '&method=' + '1',
+                    url: 'http://219.216.65.185:8082/user/logOperation.do?alertId=' + log.alertId + '&method=' + '1',
                     withCredentials: true
                 })
                     .success(function(data) {
@@ -51,7 +43,7 @@ angular.
             self.ignore = function(log) {
                 $http({
                     method: 'GET',
-                    url: 'http://192.168.50.197:8082/user/logOperation.do?alertId=' + log.alertId + '&method=' + '2',
+                    url: 'http://219.216.65.185:8082/user/logOperation.do?alertId=' + log.alertId + '&method=' + '2',
                     withCredentials: true
                 })
                     .success(function(data) {

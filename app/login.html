@@ -20,15 +20,16 @@
   <script src="bower_components/uikit/js/uikit.min.js"></script>
   <script>
     var loginPage = angular.module('loginPage', [])
-            .controller('loginController', function loginController($scope, $http, $location) {
+            .controller('loginController', function loginController($scope, $http) {
               $scope.login = function (username, password) {
                 $scope.userInfo = {
                   username: username,
                   password: password
                 };
+                console.log($scope.userInfo);
                 $http({
                   method: 'POST',
-                  url: 'http://192.168.50.197:8082/user/login.do',
+                  url: 'http://219.216.65.185:8082/user/login.do',
                   data: $.param($scope.userInfo),
                   withCredentials: true,
                   headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
