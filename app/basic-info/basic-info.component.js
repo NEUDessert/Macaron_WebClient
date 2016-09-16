@@ -17,11 +17,11 @@ angular.
         };
         $http({
             method: 'POST',
-            url: 'http://219.216.65.185:8082/user/getBasicInfo.do',
+            url: 'http://dessert.reveur.me:8080/ManageServer/user/getBasicInfo.do',
             withCredentials: true
         })
             .success(function (data) {
-                // console.log(data);
+                console.log(data);
                 if(data.error != '1') {
                     self.basicInfo = data;
                 }

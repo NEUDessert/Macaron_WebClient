@@ -14,10 +14,31 @@
                 <td>{{device.deviceName}}</td>
                 <td>{{device.registerTime}}</td>
                 <td>{{device.deviceLocate}}</td>
-                <td><button class="uk-button uk-button-small uk-button-danger" type="button">注销</button></td>
+                <td><button class="uk-button uk-button-small uk-button-danger" type="button" ng-click="$ctrl.destroyDevice(device.deviceName)" ng-disabled="device.deviceName == '[无设备]'">注销</button></td>
             </tr>
             </tbody>
         </table>
+        <table class="uk-table uk-table-hover uk-table-middle">
+            <tbody>
+            <tr>
+                <td><a href="#addDeviceDiv" class="uk-button uk-width-1-1 uk-button-link" data-uk-modal><i class="uk-icon uk-icon-plus-square uk-icon-justify"></i> 添加设备</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="addDeviceDiv" class="uk-modal">
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <h3>添加设备</h3>
+            <form ng-submit="$ctrl.addDevice(location)" class="uk-panel uk-panel-box uk-form" name="addDeviceForm">
+                <div class="uk-form-row">
+                    <span class="uk-width-1-6 uk-display-inline-block">设备位置</span><input type="text" name="location" ng-model="location" class="uk-width-4-6" required><span class="uk-width-1-6 uk-display-inline-block"></span>
+                </div>
+                <div class="uk-form-row uk-text-center">
+                    <button class="uk-width-1-4 uk-button uk-button-primary uk-button-large uk-margin-right" type="submit" ng-disabled="!addDeviceForm.$valid">添加</button><button class="uk-width-1-4 uk-button uk-modal-close uk-button-danger uk-button-large">取消</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>

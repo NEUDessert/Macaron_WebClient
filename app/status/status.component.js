@@ -20,7 +20,7 @@ angular.
             self.selected = self.statusList[0];
             $http({
                 method: 'POST',
-                url: 'http://219.216.65.185:8082/user/getCurrentStatus.do',
+                url: 'http://dessert.reveur.me:8080/ManageServer/user/getCurrentStatus.do',
                 withCredentials: true
             })
                 .success(function(data) {

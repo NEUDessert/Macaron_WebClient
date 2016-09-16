@@ -29,7 +29,7 @@
                 console.log($scope.userInfo);
                 $http({
                   method: 'POST',
-                  url: 'http://219.216.65.185:8082/user/login.do',
+                  url: 'http://dessert.reveur.me:8080/ManageServer/user/login.do',
                   data: $.param($scope.userInfo),
                   withCredentials: true,
                   headers: { 'Content-Type': 'application/x-www-form-urlencoded' }

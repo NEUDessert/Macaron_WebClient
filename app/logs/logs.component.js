@@ -21,7 +21,7 @@ angular.
             ];
             $http({
                 method: 'POST',
-                url: 'http://219.216.65.185:8082/user/getLogs.do',
+                url: 'http://dessert.reveur.me:8080/ManageServer/user/getLogs.do',
                 withCredentials: true
             }).then(function(response) {
                 if(response.data.error != '1') {
@@ -31,7 +31,7 @@ angular.
             self.solve = function(log) {
                 $http({
                     method: 'GET',
-                    url: 'http://219.216.65.185:8082/user/logOperation.do?alertId=' + log.alertId + '&method=' + '1',
+                    url: 'http://dessert.reveur.me:8080/ManageServer/user/logOperation.do?alertId=' + log.alertId + '&method=' + '1',
                     withCredentials: true
                 })
                     .success(function(data) {
@@ -43,7 +43,7 @@ angular.
             self.ignore = function(log) {
                 $http({
                     method: 'GET',
-                    url: 'http://219.216.65.185:8082/user/logOperation.do?alertId=' + log.alertId + '&method=' + '2',
+                    url: 'http://dessert.reveur.me:8080/ManageServer/user/logOperation.do?alertId=' + log.alertId + '&method=' + '2',
                     withCredentials: true
                 })
                     .success(function(data) {
