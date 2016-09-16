@@ -24,6 +24,7 @@ angular.
                 url: 'http://dessert.reveur.me:8080/ManageServer/user/getLogs.do',
                 withCredentials: true
             }).then(function(response) {
+                // console.log(response.data);
                 if(response.data.error != '1') {
                     self.logs = response.data;
                 }

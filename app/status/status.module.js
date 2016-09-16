@@ -3,4 +3,4 @@
  */
 'use strict';
 
-angular.module('status', ['chart.js']);
+angular.module('status', []);
