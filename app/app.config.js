@@ -15,11 +15,11 @@ angular.module('Macaron_WebClient').
             otherwise('/basic-info');
     }
 ])
-    .controller('loginCheckController', function loginCheckController($http, $scope, $location) {
+    .controller('loginCheckController', function loginCheckController($http, $scope) {
         $scope.username = 'Guest';
         $http({
-            method: 'POST',
-            url: 'http://192.168.50.197:8082/user/getUsername.do',
+            method: 'GET',
+            url: 'http://dessert.reveur.me:8080/ManageServer/user/getUsername.do',
             withCredentials: true
         })
             .success(function(data) {
@@ -33,7 +33,6 @@ angular.module('Macaron_WebClient').
             });
     })
     .controller('navController', function navController($scope, $location) {
-
         $scope.navItems = [
             {
                 name: 'basic-info',
@@ -72,7 +71,14 @@ angular.module('Macaron_WebClient').
             },
 
         ];
-        $scope.selectedItem = "basic-info";
+        var url = $location.url();
+        var urlSplit = url.split('/');
+        if(urlSplit.length == 1) {
+            $scope.selectedItem = 'basic-info';
+        } else {
+            $scope.selectedItem = (urlSplit[1] == '' ? 'basic-info' : urlSplit[1]);
+        }
+        console.log($scope.selectedItem);
         $scope.navClick = function (itemName) {
             $scope.selectedItem = itemName;
         };

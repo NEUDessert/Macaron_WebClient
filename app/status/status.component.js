@@ -10,25 +10,25 @@ angular.
             var self = this;
             self.statusList = [
                 {
-                    deviceName: '',
+                    deviceName: '[无设备]',
                     currentTemperature: '0',
                     currentHumidity: '0',
                     currentAirRate: '0',
                     unreadLogs: '0'
                 }
             ];
+            self.selected = self.statusList[0];
             $http({
                 method: 'POST',
-                url: 'http://192.168.50.197:8082/user/getCurrentStatus.do',
+                url: 'http://dessert.reveur.me:8080/ManageServer/user/getCurrentStatus.do',
                 withCredentials: true
             })
                 .success(function(data) {
                     console.log(data);
-                   if(data) {
+                    if(data.error != '1') {
                        self.statusList = data;
-                       self.selected = self.statusList[0];
-                   }
+                       self.selected = self.statusList[0]
+                    }
                 });
-            self.selected = self.statusList[0];
         }
 });
